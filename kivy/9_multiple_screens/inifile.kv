@@ -1,0 +1,43 @@
+# mengatur layar/halaman yang akan ada didalam layar. ini kumpulan layar layarnya
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    #jika ada halaman lagi, masukkan disini. tapi buat dulu class nya difile py
+
+# mulai membuatnya
+<MainWindow>:
+    name: "main" # nama ini akan menjadi sebutan/panggilan diantara layar
+
+    GridLayout:
+        cols:1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: passw
+                multiline: False
+
+        Button:
+            text: "Submit"
+            #Untuk menambahkan navigasi di antara halaman kita, kita hanya perlu menambahkan acara on_release ke setiap tombol kita.
+            on_release:
+                # ini untuk perpindahan layar, tinggal masukkan nama layar yang dituju
+                app.root.current = "second" if passw.text == "tim" else "main" # jika input passwordnya tim maka pinda ke layar Second, jika salah tetep dilayar ini (main)
+                # ini untuk transisi perpindahan layar
+                root.manager.transition.direction = "left" # tarsisi perpindahan layarnya bergerak ke kiri
+
+
+
+<SecondWindow>:
+    name: "second" # nama ini akan menjadi sebutan/panggilan diantara layar
+
+    Button:
+        text: "Go Back" # tombol untuk kembali
+        # tombol untuk kembali
+        on_release:
+            app.root.current = "main" # masukkan nama layarnya ("main" layar yang dituju). ini untuk Pindah layar
+            root.manager.transition.direction = "right" # tarsisi perpindahan layarnya bergerak ke kanan

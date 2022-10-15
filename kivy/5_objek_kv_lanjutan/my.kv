@@ -1,0 +1,28 @@
+<Gridaku>
+    # mengatur variabel. variabel ini akan mewakili sesuat yang disebut properti objek
+    nama: namanya # Nama variabel global merujuk pada nama id
+    email: emailnya # (nama variabel yang akan digunakan difile py: nama id yang digunakan disini)
+    
+    GridLayout: # layout utama
+        cols:1 # 1 kolom
+        size: root.width - 200, root.height -200 # mengatur ukurannya
+        pos: 100, 100 #posisi
+
+        GridLayout: # layout untuk input
+            cols:2
+
+            Label:
+                text: "Nama: "
+            TextInput:
+                id: namanya # <- Tambahkan ini
+                multiline: False
+            
+            Label:
+                text: "Email: "
+            TextInput:
+                id: emailnya # <- Tambahkan ini
+                multiline: False
+
+        Button:
+            text: "Submit"
+            on_press: root.btn() # metode dijalankan saat tombol ditekan . root adalah class Gridaku. jadi kita menggunakan fungsi yang ada diclass Gridaku

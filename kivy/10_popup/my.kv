@@ -1,0 +1,19 @@
+<Widgets>:
+    Button:
+        size: 150, 50
+        text: "Tampilkan Popup nya"
+        # ketika ditekan maka:
+        on_release: root.btn() # root disini adalah dikelas Widgets(). btn() panggil fungsi tombol
+
+# mengatur tampilan untuk popup nya
+<P>:
+    Label:
+        text: "berhasil menampilkan Popup"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1} # berada diatas
+        font_size: 32 # ukuran hurufnya
+
+    Button:
+        text: "tombol aja"
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "y":0.1} # berada ditengah bawah

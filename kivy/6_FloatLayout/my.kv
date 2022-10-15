@@ -1,0 +1,33 @@
+# Jika kita ingin mendefinisikan properti yang dimiliki masing-masing tombol kita tanpa mengulanginya,
+#kita dapat melakukan hal berikut:
+<Button>:
+    font_size: 40
+    color: 0.1,0.5,0.6,1  # warna = rgba. dari -1 sampai 1
+    size_hint: 0.5, 0.5 # punya 2 nilai, lebar dan tinggi. jadi 50% lebarnya dan tingginya 50%
+
+#Sekarang setiap tombol kita akan memiliki ukuran huruf 40, ukuran tombol dan warna teks! Kita dapat menerapkan logika ini ke widget apa pun.
+
+
+<FloatLayout>:# ini tag induk. Apa pun yang menjorok di bawah tag ini akan muncul dan mengubah FloatLayout kami
+    # membuat 2 tombol
+    #tombol ke 1:
+    Button:
+        text: "Adom Tono"
+        pos_hint: {"x":0.5, "top":1} # posisi: di x nya 50% (50% kekanan) dan 100% diatas. baca catatan dibawah
+
+    #tombol ke 2:
+    Button:
+        # ditombol ini kita akan mencoba mengubah properti nama text tombol berdasarkan keadaan
+        id : btn # tambah dulu id untuk digunakan di logika
+        text: "Taat" if btn.state == "normal" else "ditekan"
+        # jika tombol dalam keadaan normal (tidak diklik) maka nama text nya "Taat" tapi jika saat diklik nama text menjadi "Turun"
+    
+
+
+# pos_hint dan size_hint
+#Catatan 1: Anda hanya dapat menggunakan nilai antara 0-1 untuk size_hint dan pos_hint. Dimana 0 = 0% dan 1 = 100%.
+#Catatan 2: Sistem koordinat di kivy bekerja dari kiri bawah! Ini akan menjadi penting ketika menempatkan objek kita.
+#Saat membuat posisi dinamis, kita dapat menentukan hingga 6 kunci dalam dictionary seperti ini:
+#pos_hint = {"x":, "y":, "top":, "bottom":, "left":, "right":}
+#Lihat video untuk penjelasan lebih rinci tentang cara menggunakan setiap tombol.
+#https://youtu.be/lnOTAq4NQfQ
