@@ -1,0 +1,138 @@
+MDScreen:
+    MDScreenManager:
+        MDScreen:
+            MDBoxLayout:
+                orientation:'vertical'
+                # ~~~ Top bar nya
+                MDTopAppBar:
+                    title:"Geser"
+                    left_action_items:[["menu",lambda x:nav_drawer.set_state("open")]] # saat user menklik icon menu ditopbar maka nav/sidebarnya terbuka
+                    right_action_items:[["crosshairs-question",lambda x:None]]
+                    elevation:2  # untuk bayangan topbarnya
+                # ~~~~~~~~~~~~~~~~~~ Layar-layar / halaman
+                MDScreen:
+                    MDScreenManager:
+                        id:layar
+                        # ~~~~ layar/halaman beranda
+                        MDScreen:
+                            name:"Screen1"
+                            MDLabel:
+                                text:"Screen1"
+                                halign: "center"
+                        # ~~~~ layar/halaman quiz
+                        MDScreen:
+                            name:"quiz"
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                FitImage:
+                                    size_hint: None, None # none karna kita akan menetapkan ukuran gambarnya
+                                    size: "250dp", "250dp" # ini menetapkan ukuran gambarnya. jadi saat layarnya diperkecil/diperbesar ukuran gambarnya akan teteap
+                                    source: "images.jpg"
+                                    pos_hint: {"center_x": .5}
+                                MDLabel:
+                                    text: "Siapakah nama tokoh yg ada pada gambar tersebut?"
+                                    halign: "center"
+                                    pos_hint: {"top": 1, "center_y": 1}
+                                MDBoxLayout:
+                                    orientation:'horizontal'
+                                    spacing: 10
+                                    MDCard:
+                                        radius: 36
+                                        size_hint: (0.5,0.7)
+                                        focus_behavior: True # saat kursor / sentuhan diarahkan ke card ini maka dsini kita bisa ubah warnanya
+                                        md_bg_color: "lightblue" # warna backgroundnya
+                                        unfocus_color: "lightblue" # warna saat kursor/sentuhan tidak dicard ini
+                                        focus_color: "blue" # warna saat kursor/sentuhan berada dicard ini
+                                        pos_hint: {"center_x": .5, "center_y": .8}
+                                        elevation: 2
+                                        on_release: app.aa("Jamal") # saat card ini diklik maka fungsi aa yang dipython berjalan
+                                        MDLabel:
+                                            text: "Jamal"
+                                            halign: "center"
+                                            color: 1,1,1,1
+                                    MDCard:
+                                        radius: 36
+                                        size_hint: (0.5,0.7)
+                                        focus_behavior: True
+                                        pos_hint: {"center_x": .5, "center_y": .8}
+                                        md_bg_color: "darkgrey"
+                                        unfocus_color: "darkgrey"
+                                        focus_color: "grey"
+                                        elevation: 2
+                                        on_release: app.aa("Squidward")
+                                        MDLabel:
+                                            text: "Squidward"
+                                            halign: "center"
+                                            color: 1,1,1,1
+                                        
+                                MDBoxLayout:
+                                    orientation:'horizontal'
+                                    spacing: 10
+                                    MDCard:
+                                        radius: 36
+                                        size_hint: (0.5,0.7)
+                                        focus_behavior: True
+                                        pos_hint: {"center_x": .5, "center_y": 1}
+                                        md_bg_color: "darkgreen"
+                                        unfocus_color: "darkgreen"
+                                        focus_color: "green"
+                                        elevation: 2
+                                        on_release: app.aa("Naruto")
+                                        MDLabel:
+                                            text: "Naruto"
+                                            halign: "center"
+                                            color: 1,1,1,1
+                                        
+                                    MDCard:
+                                        radius: 36
+                                        size_hint: (0.5,0.7)
+                                        focus_behavior: True
+                                        pos_hint: {"center_x": .5, "center_y": 1}
+                                        md_bg_color: "darkred"
+                                        unfocus_color: "darkred"
+                                        focus_color: "red"
+                                        elevation: 2
+                                        on_release: app.aa("Ultraman")
+                                        MDLabel:
+                                            text: "Ultraman"
+                                            halign: "center"
+                                            color: 1,1,1,1
+                
+            # ~~~~~~~~~~~~~~~~~~~~~~~~ ini isi navigasinya / sidebarnya
+            MDNavigationDrawer:
+                id: nav_drawer
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: "8dp"
+                    spacing: "8dp"
+                    Image:
+                        size_hint: (1,1)
+                        source: "images.jpg"
+                    MDLabel:
+                        text: "Bhushan Ghevde"
+                        font_style: "Subtitle1"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDLabel:
+                        text: "bhushanghevde15@gmail.com"
+                        size_hint_y: None
+                        font_style: "Caption"
+                        height: self.texture_size[1]
+                    ScrollView:
+                        MDList:
+                            id: md_list
+                            OneLineIconListItem:
+                                text: "Beranda"
+                                on_release:
+                                    layar.current = 'Screen1'
+                                    root.ids.nav_drawer.set_state(new_state='toggle', animation=True) # saat beranda diklik, nav nya akan tertutup dan dilayarberandanya akan terbuka
+                                IconLeftWidget:
+                                    icon: "home"
+
+                            OneLineIconListItem:
+                                text: "Quiz"
+                                on_release:
+                                    layar.current = 'quiz'
+                                    root.ids.nav_drawer.set_state(new_state='toggle', animation=True)
+                                IconLeftWidget:
+                                    icon: "brain"

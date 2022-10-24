@@ -1,0 +1,199 @@
+MDScreen:
+    MDScreenManager:
+        MDScreen:
+            MDBoxLayout:
+                orientation:'vertical'
+                # ~~~ Top bar nya
+                MDTopAppBar:
+                    title:"Praktek"
+                    left_action_items:[["menu",lambda x:nav_drawer.set_state("open")]] # saat user menklik icon menu ditopbar maka nav/sidebarnya terbuka
+                    right_action_items:[["crosshairs-question", lambda x:app.change_screen("sumber")]]
+                    elevation:2  # untuk bayangan topbarnya
+                # ~~~~~~~~~~~~~~~~~~ Layar-layar / halaman
+                MDScreen:
+                    MDScreenManager:
+                        id:layar
+                        # ~~~~ layar/halaman beranda
+                        MDScreen:
+                            name:"beranda"
+                            MDLabel:
+                                text:"Siap untuk quiz"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .95}
+                                font_style: "H5"
+                            FitImage:
+                                size_hint: None, None
+                                size: "250dp", "250dp"
+                                source: "upin.jpg"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .65}
+                            MDRoundFlatButton:
+                                text: "Mulai"
+                                text_color: "white"
+                                md_bg_color: app.theme_cls.primary_color
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .35}
+                                on_release:
+                                    layar.current="quiz"
+                        # ~~~~ layar/halaman quiz
+                        MDScreen:
+                            name:"quiz"
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                FitImage:
+                                    size_hint: None, None # none karna kita akan menetapkan ukuran gambarnya
+                                    size: "250dp", "250dp" # ini menetapkan ukuran gambarnya. jadi saat layarnya diperkecil/diperbesar ukuran gambarnya akan teteap
+                                    source: "images.jpg"
+                                    pos_hint: {"center_x": .5}
+                                MDLabel:
+                                    text: "Siapakah nama tokoh yg ada pada gambar tersebut?"
+                                    halign: "center"
+                                    pos_hint: {"top": 1, "center_y": 1}
+                                MDBoxLayout:
+                                    orientation:'horizontal'
+                                    spacing: 10
+                                    MDCard:
+                                        radius: 36
+                                        size_hint: (0.5,0.7)
+                                        focus_behavior: True # saat kursor / sentuhan diarahkan ke card ini maka dsini kita bisa ubah warnanya
+                                        md_bg_color: "lightblue" # warna backgroundnya
+                                        unfocus_color: "lightblue" # warna saat kursor/sentuhan tidak dicard ini
+                                        focus_color: "blue" # warna saat kursor/sentuhan berada dicard ini
+                                        pos_hint: {"center_x": .5, "center_y": .8}
+                                        elevation: 2
+                                        on_release: layar.current= "kalah"
+                                        MDLabel:
+                                            text: "Jamal"
+                                            halign: "center"
+                                            color: 1,1,1,1
+                                    MDCard:
+                                        radius: 36
+                                        size_hint: (0.5,0.7)
+                                        focus_behavior: True
+                                        pos_hint: {"center_x": .5, "center_y": .8}
+                                        md_bg_color: "darkgrey"
+                                        unfocus_color: "darkgrey"
+                                        focus_color: "grey"
+                                        elevation: 2
+                                        on_release: layar.current= "menang"
+                                        MDLabel:
+                                            text: "Squidward"
+                                            halign: "center"
+                                            color: 1,1,1,1
+                                        
+                                MDBoxLayout:
+                                    orientation:'horizontal'
+                                    spacing: 10
+                                    MDCard:
+                                        radius: 36
+                                        size_hint: (0.5,0.7)
+                                        focus_behavior: True
+                                        pos_hint: {"center_x": .5, "center_y": 1}
+                                        md_bg_color: "darkgreen"
+                                        unfocus_color: "darkgreen"
+                                        focus_color: "green"
+                                        elevation: 2
+                                        on_release: layar.current= "kalah"
+                                        MDLabel:
+                                            text: "Naruto"
+                                            halign: "center"
+                                            color: 1,1,1,1
+                                        
+                                    MDCard:
+                                        radius: 36
+                                        size_hint: (0.5,0.7)
+                                        focus_behavior: True
+                                        pos_hint: {"center_x": .5, "center_y": 1}
+                                        md_bg_color: "darkred"
+                                        unfocus_color: "darkred"
+                                        focus_color: "red"
+                                        elevation: 2
+                                        on_release: layar.current= "kalah"
+                                        MDLabel:
+                                            text: "Ultraman"
+                                            halign: "center"
+                                            color: 1,1,1,1
+
+                        MDScreen:
+                            name: "sumber"
+                            MDLabel:
+                                text:"Sumber : https://github.com/Tonoooo"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .5}
+
+                        MDScreen:
+                            name: "menang"
+                            MDLabel:
+                                text:"Anda Berhasil"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .95}
+                                font_style: "H5"
+                            FitImage:
+                                size_hint: None, None
+                                size: "350dp", "250dp"
+                                source: "menang.jpg"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .65}
+                            MDRoundFlatIconButton:
+                                text: "Beranda"
+                                icon: "home"
+                                text_color: "white"
+                                md_bg_color: "green"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .35}
+                                on_release:
+                                    layar.current="beranda"
+
+                        MDScreen:
+                            name: "kalah"
+                            MDLabel:
+                                text:"Anda Kalah"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .95}
+                                font_style: "H5"
+                            FitImage:
+                                size_hint: None, None
+                                size: "350dp", "250dp"
+                                source: "kalah.jpg"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .65}
+                            MDRoundFlatIconButton:
+                                text: "Beranda"
+                                icon: "home"
+                                text_color: "white"
+                                md_bg_color: "green"
+                                halign: "center"
+                                pos_hint: {"center_x": .5, "center_y": .35}
+                                on_release:
+                                    layar.current="beranda"
+
+
+            # ~~~~~~~~~~~~~~~~~~~~~~~~ ini isi navigasinya / sidebarnya
+            MDNavigationDrawer:
+                id: nav_drawer
+                MDNavigationDrawerMenu:
+                    MDNavigationDrawerHeader:
+                        text: "Hasil Praktek"
+                        spacing: "4dp"
+                        padding: "12dp", 0, 0, "36dp"
+                        
+                    MDNavigationDrawerItem
+                        icon: "home"
+                        text: "Beranda"
+                        on_release:
+                            layar.current = 'beranda'
+                            root.ids.nav_drawer.set_state(new_state='toggle', animation=True)
+                        
+                    MDNavigationDrawerItem
+                        icon: "brain"
+                        text: "Quiz"
+                        on_release:
+                            layar.current = 'quiz'
+                            root.ids.nav_drawer.set_state(new_state='toggle', animation=True)
+
+                    MDNavigationDrawerItem
+                        icon: "crosshairs-question"
+                        text: "Sumber"
+                        on_release:
+                            layar.current = 'sumber'
+                            root.ids.nav_drawer.set_state(new_state='toggle', animation=True)
